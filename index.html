@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>포트폴리오</title>
+    <title>KIMGAMMA Portfolio</title>
     <style>
         * {
             margin: 0;
@@ -12,20 +12,20 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: rgba(25, 25, 25, 1);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f5f5f5;
             color: #333;
-            overflow-x: hidden;
+            line-height: 1.6;
         }
 
+        /* 헤더 */
         header {
-            background: rgba(0, 0, 0, 0.95);
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
+            background: #111a21;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
             top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 100;
         }
 
         nav {
@@ -34,15 +34,13 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 2rem;
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            background: rgba(255, 255, 255, 1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            width: 40px;
+            height: 40px;
+            background: #666;
+            border-radius: 50%;
         }
 
         .nav-links {
@@ -53,659 +51,465 @@
 
         .nav-links a {
             text-decoration: none;
-            color: #ffffff;
+            color: #666;
             font-weight: 500;
             transition: color 0.3s;
+            position: relative;
         }
 
-        .nav-links a:hover {
-            color: #667eea;
-        }
-
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            padding: 2rem;
-        }
-
-        .hero-content h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            animation: fadeInUp 1s ease;
-        }
-
-        .hero-content p {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            animation: fadeInUp 1s ease 0.2s backwards;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background: white;
-            color: #667eea;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            transition: transform 0.3s, box-shadow 0.3s;
-            animation: fadeInUp 1s ease 0.4s backwards;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-        }
-
-        section {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 5rem 2rem;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 3rem;
-            color: white;
-        }
-
-        .about-content {
-            background: white;
-            padding: 3rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        .cara-link {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .cara-link a {
-            display: inline-block;
-            padding: 0.8rem 1.5rem;
-            background: white;
-            color: #667eea;
-            text-decoration: none;
-            border-radius: 10px;
-            font-weight: bold;
-            transition: transform 0.3s;
-        }
-
-        .cara-link a:hover {
-            transform: scale(1.05);
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 2rem;
-        }
-
-        .project-card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            transition: transform 0.3s, box-shadow 0.3s;
-            cursor: pointer;
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-        }
-
-        .project-image {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            background: #f0f0f0;
-        }
-
-        .project-placeholder {
-            width: 100%;
-            height: 250px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: white;
-        }
-
-        .project-info {
-            padding: 1.5rem;
-        }
-
-        .project-info h3 {
-            margin-bottom: 0.5rem;
+        .nav-links a:hover,
+        .nav-links a.active {
             color: #333;
         }
 
-        .project-info p {
-            color: #666;
-            line-height: 1.6;
-            margin-bottom: 1rem;
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #333;
         }
 
-        .project-tags {
+        /* Featured Carousel */
+        .featured-section {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        .carousel-container {
+            position: relative;
+            height: 500px;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .carousel-slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.5s ease;
             display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .tag {
-            background: #f0f0f0;
-            padding: 0.3rem 0.8rem;
-            border-radius: 15px;
-            font-size: 0.85rem;
-            color: #667eea;
-        }
-/* 이미지 래퍼 스타일 추가 */
-.project-image-wrapper {
-    position: relative;
-    width: 100%;
-    height: 250px;
-    overflow: hidden;
-    background: #f0f0f0;
-}
-
-.project-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    /* GPU 가속 활성화 */
-    transform: translateZ(0);
-    will-change: opacity;
-}
-
-/* 로딩 플레이스홀더 */
-.project-image-placeholder {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 4rem;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    animation: pulse 1.5s ease-in-out infinite;
-}
-
-@keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.7; }
-}
-
-/* 기존 플레이스홀더 유지 */
-.project-placeholder {
-    width: 100%;
-    height: 250px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 4rem;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-}
-
-/* 프로젝트 카드 최적화 */
-.project-card {
-    background: white;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    /* GPU 가속 */
-    transform: translateZ(0);
-    will-change: transform;
-    /* 레이아웃 시프트 방지 */
-    contain: layout style paint;
-}
-
-.project-card:hover {
-    transform: translateY(-5px) translateZ(0);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-}
-
-.project-info {
-    padding: 1.5rem;
-}
-
-.project-info h3 {
-    margin: 0 0 0.5rem 0;
-    font-size: 1.5rem;
-    color: #333;
-}
-
-.project-info p {
-    margin: 0 0 1rem 0;
-    color: #666;
-    line-height: 1.6;
-}
-
-.project-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-}
-
-.tag {
-    padding: 0.25rem 0.75rem;
-    background: #e0e7ff;
-    color: #4f46e5;
-    border-radius: 20px;
-    font-size: 0.875rem;
-    font-weight: 500;
-}
-
-/* 컨테이너 그리드 최적화 */
-#projectsContainer {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
-    padding: 2rem;
-    /* 레이아웃 최적화 */
-    contain: layout style;
-}
-
-/* 로딩 상태 */
-.loading {
-    text-align: center;
-    padding: 3rem;
-    font-size: 1.2rem;
-    color: #666;
-}
-
-/* 반응형 디자인 */
-@media (max-width: 768px) {
-    #projectsContainer {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-        padding: 1rem;
-    }
-    
-    .project-image-wrapper,
-    .project-placeholder {
-        height: 200px;
-    }
-}
-
-        .skills-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
+            align-items: center;
             justify-content: center;
-        }
-
-        .skill-tag {
-            background: white;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            font-weight: 500;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-        }
-
-        .skill-tag:hover {
-            transform: scale(1.1);
-        }
-
-        .contact-form {
-            background: white;
-            padding: 3rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.8rem;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            font-family: inherit;
-            transition: border-color 0.3s;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-
-        .submit-button {
-            width: 100%;
-            padding: 1rem;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .carousel-slide.active {
+            opacity: 1;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carousel-text {
+            font-size: 2rem;
+            color: white;
+            font-weight: 600;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.5);
             color: white;
             border: none;
-            border-radius: 10px;
-            font-size: 1rem;
-            font-weight: bold;
+            width: 50px;
+            height: 50px;
+            border-radius: 4px;
             cursor: pointer;
-            transition: transform 0.3s;
+            font-size: 1.5rem;
+            transition: background 0.3s;
+            z-index: 10;
         }
 
-        .submit-button:hover {
-            transform: translateY(-3px);
+        .carousel-btn:hover {
+            background: rgba(0,0,0,0.7);
         }
 
-        .loading {
+        .carousel-btn.prev {
+            left: 1rem;
+        }
+
+        .carousel-btn.next {
+            right: 1rem;
+        }
+
+        /* Intro Section */
+        .intro-section {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
             text-align: center;
-            color: white;
+        }
+
+        .intro-section h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .intro-section .subtitle {
             font-size: 1.2rem;
-            padding: 2rem;
+            color: #666;
+            margin-bottom: 0.5rem;
         }
 
-        footer {
-            background: rgba(0,0,0,0.2);
-            color: white;
-            text-align: center;
-            padding: 2rem;
+        .intro-section .specialties {
+            font-size: 1rem;
+            color: #999;
+        }
+
+        /* Portfolio Grid */
+        .portfolio-section {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .portfolio-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .portfolio-card.fade-in {
+            animation: fadeInUp 0.6s ease forwards;
         }
 
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
 
-        @media (max-width: 768px) {
-            .hero-content h1 {
-                font-size: 2rem;
-            }
+        .portfolio-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+        }
 
-            .hero-content p {
-                font-size: 1.2rem;
-            }
+        .card-image-container {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+            background: #f0f0f0;
+        }
 
-            .nav-links {
-                gap: 1rem;
-            }
+        .card-thumbnail {
+            width: 64px;
+            height: 64px;
+            background: #ddd;
+            border-radius: 8px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
 
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
+        .card-reveal-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transform: scale(1.1);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        .portfolio-card:hover .card-reveal-image {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .portfolio-card:hover .card-thumbnail {
+            opacity: 0;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.3rem;
+            font-weight: 600;
+        }
+
+        .card-info p {
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        .card-arrow {
+            font-size: 1.5rem;
+            color: #999;
+        }
+
+        /* Social Links */
+        .social-section {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .social-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            transition: background 0.3s;
+            cursor: pointer;
+        }
+
+        .social-icon:hover {
+            background: #999;
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 2rem;
+            text-align: center;
+            color: #999;
+            font-size: 0.9rem;
         }
     </style>
 </head>
 <body>
+    <!-- Header -->
     <header>
         <nav>
-            <div class="logo">Portfolio</div>
+            <div class="logo"></div>
             <ul class="nav-links">
-                <li><a href="#home">Main</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Works</a></li>
-                <li><a href="#skills">Skills</a></li>
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
     </header>
 
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>이중주♬ @WUET</h1>
-            <p>프리렌서 일러스트레이터</p>
-            <a href="#projects" class="cta-button">작업물 보기</a>
-        </div>
-    </section>
-
-    <section id="about">
-        <h2 class="section-title">About Me</h2>
-        <div class="about-content">
-            <p style="font-size: 1.1rem; line-height: 1.8; color: #000000;">
-                크리쳐를 주력으로 두고있는 프리랜서아티스트입니다. 
-		2D일러스트가 메인이지만 간단한 3D 스컬팅과 루프 애니메이션, 
-		픽셀아트가 가능힙니다. 캐릭터 디자인, 컨셉아트도 가능합니다.
-		자세한 작업물은 아래에서 확인해주세요 :)
-            </p>
-        </div>
-    </section>
-
-    <section id="projects">
-        <h2 class="section-title">Works</h2>
-        <div class="cara-link">
-            <a href="https://cara.app/wuet/portfolio" target="_blank">Cara 포트폴리오 전체 보기 →</a>
-        </div>
-        <div class="projects-grid" id="projectsContainer">
-            <div class="loading">프로젝트를 불러오는 중...</div>
-        </div>
-    </section>
-	<div id="projectsContainer"></div>
-    <section id="skills">
-        <h2 class="section-title">Skills</h2>
-        <div class="skills-container">
-            <div class="skill-tag">2D Illust</div>
-            <div class="skill-tag">3D Sculpting</div>
-            <div class="skill-tag">PixelArt</div>
-            <div class="skill-tag">Animating</div>
+    <!-- Featured Carousel -->
+    <section class="featured-section">
+        <div class="carousel-container">
+            <div class="carousel-slide active">
+                <div class="carousel-text">Featured Illustration 1</div>
             </div>
+            <div class="carousel-slide">
+                <div class="carousel-text">Featured Illustration 2</div>
+            </div>
+            <div class="carousel-slide">
+                <div class="carousel-text">Featured Illustration 3</div>
+            </div>
+            <button class="carousel-btn prev">‹</button>
+            <button class="carousel-btn next">›</button>
+        </div>
     </section>
 
-  <section id="contact">
-        <h2 class="section-title">Contact</h2>
-        <div class="contact-form">
-            <p style="font-size: 1.3rem; text-align: center; color: #333;">
-                📧 <a href="mailto:poleswallow@daum.net" style="color: #667eea; text-decoration: none; font-weight: bold;">poleswallow@daum.net</a>
-            </p>
+    <!-- Intro -->
+    <section class="intro-section">
+        <h1>KIMGAMMA</h1>
+        <p class="subtitle">Illustrator based in Seoul</p>
+        <p class="specialties">Character / Background | Concept Art</p>
+    </section>
+
+    <!-- Portfolio Grid -->
+    <section class="portfolio-section" id="portfolio">
+        <div class="portfolio-grid" id="portfolioGrid"></div>
+    </section>
+
+    <!-- Social Links -->
+    <section class="social-section" id="contact">
+        <div class="social-links">
+            <div class="social-icon">✉</div>
+            <div class="social-icon">𝕏</div>
+            <div class="social-icon">📷</div>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2025 Portfolio. All rights reserved.</p>
+        <p>© 2026 KIMGAMMA. All rights reserved.</p>
     </footer>
 
-    <script>     
-// 여기에 Cara 포트폴리오 데이터를 추가하세요
-const portfolioProjects = [
-    {
-        title: "일러스트",
-        description: "게임 일러스트풍의 개인, 커미션 작업물들",
-        image: "https://images.cara.app/production/posts/814e1392-b69f-477d-a771-65abcd873d50/kimgamma-dkGak9uaxBkx2viUwTa-o-post-cover-image.jpeg?width=384&quality=100",
-        tags: ["Medibang", "Illust"],
-        link: "https://cara.app/post/814e1392-b69f-477d-a771-65abcd873d50"
-    },
-    {
-        title: "픽셀아트",
-        description: "픽셀 루프애니메이션 작업물들",
-        image: "https://images.cara.app/production/posts/fe650d0c-cf9e-4daf-94f2-e2f501a8c745/kimgamma-oQ7WH3fqSfKKN8elxB5-2-Sprite-0025.gif?width=750&quality=100",
-        tags: ["Aseprite", "PixelArt"],
-        link: "https://cara.app/post/fe650d0c-cf9e-4daf-94f2-e2f501a8c745"
-    },
-    {
-        title: "삽화",
-        description: "삽화 작업물들",
-        image: "https://images.cara.app/production/posts/10c9f2ba-5c5a-4a45-860f-15592988821d/kimgamma-9-Wtt2UXsv3Nwhcx0wZ-0-post-cover-image.jpeg?width=384&quality=100",
-        tags: ["Medibang", "Full Illust"],
-        link: "https://cara.app/post/10c9f2ba-5c5a-4a45-860f-15592988821d"
-    },
-    {
-        title: "3D",
-        description: "3D 스컬팅 작업물들",
-        image: "https://images.cara.app/production/posts/91cc34a1-a58e-49b6-b24c-952e7cc08d13/kimgamma-ktN7Il2Hi6fADZjeZAuxs-post-cover-image.jpeg?width=750&quality=100",
-        tags: ["Nomad", "ArtToy", "Sculpting"],
-        link: "https://wduet.github.io/3dworks/"
-    },
-    {
-        title: "Animating",
-        description: "애니메이션 작업물들",
-        image: "https://images.cara.app/production/posts/bedef655-0005-4c16-a024-20d16b534808/kimgamma-AvDEFD76Mqu0tiJwwpBIm-project01-(3).gif?width=384&quality=100",
-        tags: ["ToonSquid", "Animation"],
-        link: "https://cara.app/post/bedef655-0005-4c16-a024-20d16b534808"
-    }
-];
-
-// 최적화된 프로젝트 렌더링 함수
-function renderProjects() {
-    const container = document.getElementById('projectsContainer');
-    
-    if (portfolioProjects.length === 0) {
-        container.innerHTML = '<div class="loading">표시할 프로젝트가 없습니다.</div>';
-        return;
-    }
-
-    // DocumentFragment 사용으로 리플로우 최소화
-    const fragment = document.createDocumentFragment();
-    
-    portfolioProjects.forEach(project => {
-        const card = document.createElement('div');
-        card.className = 'project-card';
-        card.onclick = () => window.open(project.link, '_blank');
-        
-        // 이미지 컨테이너
-        if (project.image) {
-            const imgWrapper = document.createElement('div');
-            imgWrapper.className = 'project-image-wrapper';
-            
-            // 로딩 플레이스홀더
-            const placeholder = document.createElement('div');
-            placeholder.className = 'project-image-placeholder';
-            placeholder.innerHTML = '🎨';
-            imgWrapper.appendChild(placeholder);
-            
-            // 이미지 요소
-            const img = document.createElement('img');
-            img.className = 'project-image';
-            img.alt = project.title;
-            img.loading = 'lazy'; // 네이티브 lazy loading
-            
-            // 이미지 로드 완료 시 플레이스홀더 제거
-            img.onload = () => {
-                img.style.opacity = '1';
-                placeholder.style.display = 'none';
-            };
-            
-            // 에러 처리
-            img.onerror = () => {
-                placeholder.innerHTML = '❌';
-                placeholder.style.opacity = '0.5';
-            };
-            
-            // data-src 사용으로 초기 로딩 지연
-            img.dataset.src = project.image;
-            
-            imgWrapper.appendChild(img);
-            card.appendChild(imgWrapper);
-        } else {
-            const placeholder = document.createElement('div');
-            placeholder.className = 'project-placeholder';
-            placeholder.textContent = '🎨';
-            card.appendChild(placeholder);
-        }
-        
-        // 프로젝트 정보
-        const info = document.createElement('div');
-        info.className = 'project-info';
-        
-        const title = document.createElement('h3');
-        title.textContent = project.title;
-        info.appendChild(title);
-        
-        const description = document.createElement('p');
-        description.textContent = project.description;
-        info.appendChild(description);
-        
-        // 태그
-        const tagsContainer = document.createElement('div');
-        tagsContainer.className = 'project-tags';
-        
-        project.tags.forEach(tagText => {
-            const tag = document.createElement('span');
-            tag.className = 'tag';
-            tag.textContent = tagText;
-            tagsContainer.appendChild(tag);
-        });
-        
-        info.appendChild(tagsContainer);
-        card.appendChild(info);
-        
-        fragment.appendChild(card);
-    });
-    
-    // 한 번에 DOM에 추가 (리플로우 최소화)
-    container.innerHTML = '';
-    container.appendChild(fragment);
-    
-    // Intersection Observer로 이미지 로드 관리
-    lazyLoadImages();
-}
-
-// Intersection Observer를 사용한 이미지 lazy loading
-function lazyLoadImages() {
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                const src = img.dataset.src;
-                
-                if (src) {
-                    img.src = src;
-                    img.removeAttribute('data-src');
-                }
-                
-                observer.unobserve(img);
+    <script>
+        // Portfolio Data
+        const portfolioProjects = [
+            {
+                title: "일러스트",
+                description: "게임 일러스트풍의 개인, 커미션 작업물들",
+                image: "https://images.cara.app/production/posts/814e1392-b69f-477d-a771-65abcd873d50/kimgamma-dkGak9uaxBkx2viUwTa-o-post-cover-image.jpeg?width=384&quality=100",
+                icon: "🎨",
+                link: "https://cara.app/post/814e1392-b69f-477d-a771-65abcd873d50"
+            },
+            {
+                title: "픽셀아트",
+                description: "픽셀 루프애니메이션 작업물들",
+                image: "https://images.cara.app/production/posts/fe650d0c-cf9e-4daf-94f2-e2f501a8c745/kimgamma-oQ7WH3fqSfKKN8elxB5-2-Sprite-0025.gif?width=384&quality=100",
+                icon: "🕹️",
+                link: "https://cara.app/post/fe650d0c-cf9e-4daf-94f2-e2f501a8c745"
+            },
+            {
+                title: "삽화",
+                description: "삽화 작업물들",
+                image: "https://images.cara.app/production/posts/10c9f2ba-5c5a-4a45-860f-15592988821d/kimgamma-9-Wtt2UXsv3Nwhcx0wZ-0-post-cover-image.jpeg?width=384&quality=100",
+                icon: "🖼️",
+                link: "https://cara.app/post/10c9f2ba-5c5a-4a45-860f-15592988821d"
+            },
+            {
+                title: "3D",
+                description: "3D 스컬팅 작업물들",
+                image: "https://images.cara.app/production/posts/91cc34a1-a58e-49b6-b24c-952e7cc08d13/kimgamma-ktN7Il2Hi6fADZjeZAuxs-post-cover-image.jpeg?width=384&quality=100",
+                icon: "🗿",
+                link: "https://cara.app/post/91cc34a1-a58e-49b6-b24c-952e7cc08d13"
+            },
+            {
+                title: "Animating",
+                description: "애니메이션 작업물들",
+                image: "https://images.cara.app/production/posts/bedef655-0005-4c16-a024-20d16b534808/kimgamma-AvDEFD76Mqu0tiJwwpBIm-project01-(3).gif?width=384&quality=100",
+                icon: "🎬",
+                link: "https://cara.app/post/bedef655-0005-4c16-a024-20d16b534808"
             }
-        });
-    }, {
-        rootMargin: '50px', // 뷰포트 50px 전에 미리 로드
-        threshold: 0.01
-    });
-    
-    // 모든 lazy load 이미지 관찰 시작
-    document.querySelectorAll('img[data-src]').forEach(img => {
-        imageObserver.observe(img);
-    });
-}
+        ];
 
-// 페이지 로드 최적화: DOMContentLoaded 대신 즉시 실행
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', renderProjects);
-} else {
-    // DOM이 이미 준비된 경우 즉시 실행
-    renderProjects();
-}
+        // Render Portfolio
+        function renderPortfolio() {
+            const grid = document.getElementById('portfolioGrid');
+            const fragment = document.createDocumentFragment();
 
-        // 부드러운 스크롤
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                target.scrollIntoView({
-                    behavior: 'smooth'
+            portfolioProjects.forEach((project, index) => {
+                const card = document.createElement('div');
+                card.className = 'portfolio-card';
+                card.style.animationDelay = `${index * 0.1}s`;
+                card.onclick = () => window.open(project.link, '_blank');
+
+                card.innerHTML = `
+                    <div class="card-image-container">
+                        <div class="card-thumbnail">${project.icon}</div>
+                        <img class="card-reveal-image" data-src="${project.image}" alt="${project.title}">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-info">
+                            <h3>${project.title}</h3>
+                            <p>${project.description}</p>
+                        </div>
+                        <div class="card-arrow">›</div>
+                    </div>
+                `;
+
+                fragment.appendChild(card);
+            });
+
+            grid.appendChild(fragment);
+            setupScrollAnimation();
+            lazyLoadImages();
+        }
+
+        // Scroll Animation
+        function setupScrollAnimation() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            document.querySelectorAll('.portfolio-card').forEach(card => {
+                observer.observe(card);
+            });
+        }
+
+        // Lazy Load Images
+        function lazyLoadImages() {
+            const imageObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        imageObserver.unobserve(img);
+                    }
                 });
             });
+
+            document.querySelectorAll('img[data-src]').forEach(img => {
+                imageObserver.observe(img);
+            });
+        }
+
+        // Carousel
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const totalSlides = slides.length;
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[index].classList.add('active');
+        }
+
+        document.querySelector('.carousel-btn.prev').addEventListener('click', () => {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            showSlide(currentSlide);
         });
+
+        document.querySelector('.carousel-btn.next').addEventListener('click', () => {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            showSlide(currentSlide);
+        });
+
+        // Auto slide
+        setInterval(() => {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            showSlide(currentSlide);
+        }, 5000);
+
+        // Init
+        renderPortfolio();
     </script>
 </body>
 </html>
