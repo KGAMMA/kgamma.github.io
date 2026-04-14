@@ -238,23 +238,6 @@
             border: 1px solid #3a3a3a;
         }
 
-        .card-reveal-image {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0;
-            transform: scale(1.1);
-            transition: opacity 0.4s ease, transform 0.4s ease;
-        }
-
-        .portfolio-card:hover .card-reveal-image {
-            opacity: 1;
-            transform: scale(1);
-        }
-
         .portfolio-card:hover .card-thumbnail {
             opacity: 0;
         }
@@ -429,8 +412,7 @@
 
                 card.innerHTML = `
                     <div class="card-image-container">
-                        <div class="card-thumbnail">${project.image}</div>
-                        <img class="card-reveal-image" data-src="${project.image}" alt="${project.title}">
+                        <img class="card-image" src="${project.image}" alt="${project.title}">
                     </div>
                     <div class="card-content">
                         <div class="card-info">
