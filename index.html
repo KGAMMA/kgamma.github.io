@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>portfolio</title>
+    <title>KIMGAMMA Portfolio</title>
     <style>
         * {
             margin: 0;
@@ -13,8 +13,8 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: #121212; /* 다크모드 배경 */
-            color: #e0e0e0; /* 다크모드 기본 텍스트 색상 */
+            background: #0a0a0a;
+            color: #e0e0e0;
             line-height: 1.6;
         }
 
@@ -22,10 +22,11 @@
         header {
             background: #1a1a1a;
             padding: 1.5rem 2rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
             position: sticky;
             top: 0;
             z-index: 100;
+            border-bottom: 1px solid #2a2a2a;
         }
 
         nav {
@@ -59,7 +60,7 @@
 
         .nav-links a:hover,
         .nav-links a.active {
-            color: #ffffff;
+            color: #fff;
         }
 
         .nav-links a.active::after {
@@ -69,7 +70,7 @@
             left: 0;
             width: 100%;
             height: 2px;
-            background: #ffffff;
+            background: #fff;
         }
 
         /* Featured Carousel */
@@ -82,10 +83,11 @@
         .carousel-container {
             position: relative;
             height: 500px;
-            background: #1e1e1e;
+            background: #1a1a1a;
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            border: 1px solid #2a2a2a;
         }
 
         .carousel-slide {
@@ -97,7 +99,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #4b6cb7 0%, #182848 100%); /* 약간 어두운 그라데이션으로 변경 */
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
 
         .carousel-slide.active {
@@ -114,16 +116,15 @@
             font-size: 2rem;
             color: white;
             font-weight: 600;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* 텍스트 가독성 향상 */
         }
 
         .carousel-btn {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(0,0,0,0.5);
+            background: rgba(255,255,255,0.1);
             color: white;
-            border: none;
+            border: 1px solid rgba(255,255,255,0.2);
             width: 50px;
             height: 50px;
             border-radius: 4px;
@@ -131,10 +132,11 @@
             font-size: 1.5rem;
             transition: background 0.3s;
             z-index: 10;
+            backdrop-filter: blur(10px);
         }
 
         .carousel-btn:hover {
-            background: rgba(0,0,0,0.8);
+            background: rgba(255,255,255,0.2);
         }
 
         .carousel-btn.prev {
@@ -157,18 +159,17 @@
             font-size: 2.5rem;
             margin-bottom: 1rem;
             font-weight: 700;
-            color: #ffffff;
         }
 
         .intro-section .subtitle {
             font-size: 1.2rem;
-            color: #bbb;
+            color: #aaa;
             margin-bottom: 0.5rem;
         }
 
         .intro-section .specialties {
             font-size: 1rem;
-            color: #888;
+            color: #666;
         }
 
         /* Portfolio Grid */
@@ -186,10 +187,11 @@
         }
 
         .portfolio-card {
-            background: #1e1e1e; /* 카드 배경 어둡게 */
+            background: #1a1a1a;
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            border: 1px solid #2a2a2a;
             cursor: pointer;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             opacity: 0;
@@ -209,20 +211,21 @@
 
         .portfolio-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.7);
+            border-color: #3a3a3a;
         }
 
         .card-image-container {
             position: relative;
             height: 250px;
             overflow: hidden;
-            background: #2a2a2a; /* 이미지 로딩 전 배경 */
+            background: #0a0a0a;
         }
 
         .card-thumbnail {
             width: 64px;
             height: 64px;
-            background: #333;
+            background: #2a2a2a;
             border-radius: 8px;
             position: absolute;
             top: 50%;
@@ -232,6 +235,7 @@
             align-items: center;
             justify-content: center;
             font-size: 2rem;
+            border: 1px solid #3a3a3a;
         }
 
         .card-reveal-image {
@@ -266,22 +270,16 @@
             font-size: 1.3rem;
             margin-bottom: 0.3rem;
             font-weight: 600;
-            color: #ffffff;
         }
 
         .card-info p {
-            color: #aaa;
+            color: #666;
             font-size: 0.9rem;
         }
 
         .card-arrow {
             font-size: 1.5rem;
             color: #666;
-            transition: color 0.3s;
-        }
-        
-        .portfolio-card:hover .card-arrow {
-            color: #fff;
         }
 
         /* Social Links */
@@ -303,31 +301,34 @@
             width: 48px;
             height: 48px;
             border-radius: 50%;
-            background: #2a2a2a;
+            background: #1a1a1a;
+            border: 1px solid #2a2a2a;
             display: flex;
             align-items: center;
             justify-content: center;
             color: #aaa;
-            transition: background 0.3s, color 0.3s;
+            transition: all 0.3s;
             cursor: pointer;
         }
 
         .social-icon:hover {
-            background: #444;
-            color: #ffffff;
+            background: #2a2a2a;
+            color: white;
+            border-color: #3a3a3a;
         }
 
         /* Footer */
         footer {
             padding: 3rem 2rem;
             text-align: center;
-            color: #777;
+            color: #666;
             font-size: 0.9rem;
-            border-top: 1px solid #222;
+            border-top: 1px solid #2a2a2a;
         }
     </style>
 </head>
 <body>
+    <!-- Header -->
     <header>
         <nav>
             <div class="logo"></div>
@@ -339,6 +340,7 @@
         </nav>
     </header>
 
+    <!-- Featured Carousel -->
     <section class="featured-section">
         <div class="carousel-container">
             <div class="carousel-slide active">
@@ -355,16 +357,19 @@
         </div>
     </section>
 
+    <!-- Intro -->
     <section class="intro-section">
         <h1>KIMGAMMA</h1>
         <p class="subtitle">Illustrator based in Seoul</p>
         <p class="specialties">Character / Background | Concept Art</p>
     </section>
 
+    <!-- Portfolio Grid -->
     <section class="portfolio-section" id="portfolio">
         <div class="portfolio-grid" id="portfolioGrid"></div>
     </section>
 
+    <!-- Social Links -->
     <section class="social-section" id="contact">
         <div class="social-links">
             <div class="social-icon">✉</div>
